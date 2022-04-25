@@ -1,23 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react";
+import "./App.css";
+import POKEMONS from "./models/mock-pokemon.ts";
 
 function App() {
+  const [pokemons, setPokemons] = useState([]);
+
+  useEffect(() => {
+    setPokemons(POKEMONS);
+  }, []);
+
+  console.log(pokemons);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1 className="center">Pokédex</h1>
+      <div className="container">
+        <div className="row">
+          {pokemons.map((pokemon) => (
+            <div className="col s6 m4" key={pokemon.name}>
+              <div className="card horizontal">
+                <div className="card-image">
+                  <img src={pokemon.picture} alt={pokemon.name} />
+                </div>
+                <div className="card-stacked">
+                  <div className="card-content">
+                    <p>{pokemon.name}</p>
+                    <p>
+                      <small>{pokemon.created.toString()}</small>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
