@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PokemonCard from "./../components/PokemonCard";
+import POKEMONS from "./../models/mock-pokemon.ts";
 
-const PokemonList = ({ pokemons }) => {
+const PokemonList = () => {
+  const [pokemons, setPokemons] = useState([]);
+
+  useEffect(() => {
+    setPokemons(POKEMONS);
+  }, []);
+
   return (
     <div>
       <h1 className="center">Pokédex</h1>

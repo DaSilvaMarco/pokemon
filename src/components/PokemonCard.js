@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import "./../styles/pokemonCard.css";
 import formatDate from "./../helpers/format-date.ts";
 import formatType from "./../helpers/format-type.ts";
+import { useHistory } from "react-router-dom";
 
 const PokemonCard = ({ pokemons, borderColor = "#009688" }) => {
   const [color, setColor] = useState();
+  const history = useHistory();
 
   const showBorder = () => {
     setColor(borderColor);
