@@ -2,7 +2,7 @@ import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import "./App.css";
 import PokemonList from "./pages/PokemonList.js";
 import PokemonDetails from "./pages/PokemonsDetails.js";
-import POKEMONS from "./models/mock-pokemon.ts";
+import PageNotFound from "./pages/PageNotFound";
 
 function App() {
   return (
@@ -17,9 +17,10 @@ function App() {
         </nav>
       </div>
       <Routes>
-        <Route exact path="/" element={<PokemonList />} />
-        <Route exact path="/pokemons" element={<PokemonList />} />
-        <Route exact path="/pokemons/:id" element={<PokemonDetails />} />
+        <Route path="/" element={<PokemonList />} />
+        <Route path="/pokemons" element={<PokemonList />} />
+        <Route path="/pokemons/:id" element={<PokemonDetails />} />
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </BrowserRouter>
   );

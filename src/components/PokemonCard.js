@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import "./../styles/pokemonCard.css";
 import formatDate from "./../helpers/format-date.ts";
 import formatType from "./../helpers/format-type.ts";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const PokemonCard = ({ pokemons, borderColor = "#009688" }) => {
   const [color, setColor] = useState();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const showBorder = () => {
     setColor(borderColor);
@@ -16,12 +16,17 @@ const PokemonCard = ({ pokemons, borderColor = "#009688" }) => {
     setColor("#f5f5f5");
   };
 
+  const goToPokemon = (id) => {
+    navigate(`/pokemons/${id}`);
+  };
+
   return (
     <div
       className="col s6 m4"
       key={pokemons.name}
       onMouseEnter={showBorder}
       onMouseLeave={hideBorder}
+      onClick={() => goToPokemon(pokemons.id)}
     >
       <div className="card horizontal" style={{ borderColor: color }}>
         <div className="card-image">
