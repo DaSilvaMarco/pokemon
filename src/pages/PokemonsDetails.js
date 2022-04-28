@@ -3,19 +3,14 @@ import { Link, useParams } from "react-router-dom";
 import formatDate from "./../helpers/format-date.ts";
 import formatType from "./../helpers/format-type.ts";
 import PageNotFound from "./PageNotFound";
+import PokemonService from "./../services/PokemonService";
 
 const PokemonsDetails = () => {
   const [pokemon, setPokemon] = useState(null);
   const { id } = useParams();
 
-  console.log(id);
-
   useEffect(() => {
-    fetch(`http://localhost:3001/pokemons/${id}`)
-      .then((response) => response.json())
-      .then((pokemon) => {
-        if (pokemon.id) setPokemon(pokemon);
-      });
+    PokemonService.getPokemon(id).then((pokemon) => setPokemon(pokemon));
   }, [id]);
 
   return (

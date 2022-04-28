@@ -4,6 +4,7 @@ import PokemonList from "./pages/PokemonList.js";
 import PokemonDetails from "./pages/PokemonsDetails.js";
 import PageNotFound from "./pages/PageNotFound";
 import PokemonEdit from "./pages/PokemonEdit";
+import PokemonCreate from "./pages/PokemonCreate";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/pokemons/:id" element={<PokemonDetails />} />
         <Route path="/pokemons/edit/:id" element={<PokemonEdit />} />
         <Route element={<PageNotFound />} />
+        <Route path="/pokemons/create" element={<PokemonCreate />} />
       </Routes>
     </BrowserRouter>
   );
