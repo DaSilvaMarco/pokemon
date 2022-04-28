@@ -1,21 +1,22 @@
 import React, { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
-import POKEMONS from "./../models/mock-pokemon.ts";
+import { Link, useParams } from "react-router-dom";
 import formatDate from "./../helpers/format-date.ts";
 import formatType from "./../helpers/format-type.ts";
 import PageNotFound from "./PageNotFound";
 
 const PokemonsDetails = () => {
   const [pokemon, setPokemon] = useState(null);
-  const location = useLocation();
+  const { id } = useParams();
+
+  console.log(id);
 
   useEffect(() => {
-    POKEMONS.forEach((pokemon) => {
-      if (location.pathname === `/pokemons/${pokemon.id}`) {
-        setPokemon(pokemon);
-      }
-    });
-  }, [location.pathname]);
+    fetch(`http://localhost:3001/pokemons/${id}`)
+      .then((response) => response.json())
+      .then((pokemon) => {
+        if (pokemon.id) setPokemon(pokemon);
+      });
+  }, [id]);
 
   return (
     <div>

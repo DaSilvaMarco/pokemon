@@ -1,19 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router";
+import { useParams } from "react-router";
 import PokemonForm from "./../components/PokemonForm.js";
-import POKEMONS from "./../models/mock-pokemon.ts";
 
 const PokemonEdit = () => {
   const [pokemon, setPokemon] = useState(null);
-  const location = useLocation();
+  const { id } = useParams();
 
   useEffect(() => {
-    POKEMONS.forEach((pokemon) => {
-      if (location.pathname === `/pokemons/edit/${pokemon.id}`) {
-        setPokemon(pokemon);
-      }
-    });
-  }, [location.pathname]);
+    fetch(`http://localhost:3001/pokemons/${id}`)
+      .then((response) => response.json())
+      .then((pokemon) => {
+        if (pokemon.id) setPokemon(pokemon);
+      });
+  });
 
   return (
     <div>
