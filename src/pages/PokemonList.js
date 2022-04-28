@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import PokemonSearch from "../components/PokemonSearch";
 import PokemonCard from "./../components/PokemonCard";
 import PokemonService from "./../services/PokemonService";
 
@@ -15,6 +16,7 @@ const PokemonList = () => {
       <h1 className="center">Pokédex</h1>
       <div className="container">
         <div className="row">
+          <PokemonSearch />
           {pokemons.map((pokemons) => (
             <PokemonCard key={pokemons.id} pokemons={pokemons} />
           ))}

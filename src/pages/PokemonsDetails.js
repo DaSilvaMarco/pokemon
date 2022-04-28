@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import formatDate from "./../helpers/format-date.ts";
 import formatType from "./../helpers/format-type.ts";
-import PageNotFound from "./PageNotFound";
 import PokemonService from "./../services/PokemonService";
+import Loader from "../components/Loader";
 
 const PokemonsDetails = () => {
   const [pokemon, setPokemon] = useState(null);
@@ -80,7 +80,9 @@ const PokemonsDetails = () => {
           </div>
         </div>
       ) : (
-        <PageNotFound />
+        <h4 className="center">
+          <Loader />
+        </h4>
       )}
     </div>
   );

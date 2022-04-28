@@ -22,9 +22,10 @@ function App() {
         <Route path="/" element={<PokemonList />} />
         <Route path="/pokemons" element={<PokemonList />} />
         <Route path="/pokemons/:id" element={<PokemonDetails />} />
+        <Route path="/pokemons/*" element={<PageNotFound />} />
         <Route path="/pokemons/edit/:id" element={<PokemonEdit />} />
-        <Route element={<PageNotFound />} />
         <Route path="/pokemons/create" element={<PokemonCreate />} />
+        <Route element={<PageNotFound />} />
       </Routes>
     </BrowserRouter>
   );
