@@ -9,7 +9,7 @@ const PokemonList = () => {
 
   useEffect(() => {
     PokemonService.getPokemons().then((pokemons) => setPokemons(pokemons));
-  });
+  }, []);
 
   return (
     <div>

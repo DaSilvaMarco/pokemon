@@ -5,7 +5,8 @@ import PokemonDetails from "./pages/PokemonsDetails.js";
 import PageNotFound from "./pages/PageNotFound";
 import PokemonEdit from "./pages/PokemonEdit";
 import PokemonCreate from "./pages/PokemonCreate";
-
+import Login from "./pages/Login";
+import PrivateRoute from "./components/PrivateRoute";
 function App() {
   return (
     <BrowserRouter>
@@ -20,12 +21,14 @@ function App() {
       </div>
       <Routes>
         <Route path="/" element={<PokemonList />} />
-        <Route path="/pokemons" element={<PokemonList />} />
-        <Route path="/pokemons/:id" element={<PokemonDetails />} />
-        <Route path="/pokemons/*" element={<PageNotFound />} />
-        <Route path="/pokemons/edit/:id" element={<PokemonEdit />} />
-        <Route path="/pokemons/create" element={<PokemonCreate />} />
-        <Route element={<PageNotFound />} />
+        <Route element={<PrivateRoute />}>
+          <Route path="/pokemons/:id" element={<PokemonDetails />} />
+          <Route path="/pokemons/edit/:id" element={<PokemonEdit />} />
+          <Route path="/pokemons/create" element={<PokemonCreate />} />
+          <Route path="/pokemons" element={<PokemonList />} />
+        </Route>
+        <Route path="/login" element={<Login />} />
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </BrowserRouter>
   );
